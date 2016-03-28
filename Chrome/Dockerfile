@@ -61,7 +61,7 @@ RUN echo 'deb http://httpredir.debian.org/debian testing main' >> /etc/apt/sourc
 	&& rm -rf /var/lib/apt/lists/* \
 	&& rm -rf /src/*.deb
 
-COPY local.conf /etc/fonts/local.conf
+# COPY local.conf /etc/fonts/local.conf
 
 # Autorun chrome
 ENTRYPOINT [ "google-chrome" ]
