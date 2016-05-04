@@ -30,17 +30,17 @@ MAINTAINER Thiago Rider Augusto <thiago.rider@gmail.com>
 RUN apk add --update --no-cache \
 	bash \
 	chromium \
-	chromium-doc
-#	ca-certificates \
+	chromium-doc \
+	ca-certificates \
 #	fonts-liberation \
 #	fonts-roboto \
 #	gconf-service \
-#	hicolor-icon-theme \
+	hicolor-icon-theme \
 #	libappindicator1 \
 #	libasound2 \
 #	libcanberra-gtk-module \
 #	libcurl3 \
-#	libexif-dev \
+	libexif-dev \
 #	libfontconfig1 \
 #	libfreetype6 \
 #	libgconf-2-4 \
@@ -48,17 +48,18 @@ RUN apk add --update --no-cache \
 #	libgl1-mesa-glx \
 #	libnspr4 \
 #	libnss3 \
-#	libpango1.0-0 \
-#	libv4l-0 \
+	pango \
+	v4l-utils-libs \
 #	libxss1 \
 #	libxtst6 \
 #	lsb-base \
-#	strace \
-#	wget \
-#	xdg-utils \
+	strace \
+	wget \
+	xdg-utils
 #	fonts-symbola \
 #	apk -i '/src/google-chrome-stable_current_amd64.deb' && \
 #	&& rm -rf /var/cache/apk/*
 
 # Set chrome as the process started
 ENTRYPOINT [ "chromium-browser" ]
+CMD [ "--user-data-dir=/data" ]
