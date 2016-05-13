@@ -1,5 +1,3 @@
-# Run Chrome in a container
-#
 # docker run -it \
 #	--net host \ # may as well YOLO
 #	--cpuset-cpus 0 \ # control the cpu
@@ -17,15 +15,14 @@
 #
 #
 
-# Base docker image
 FROM debian:sid
-MAINTAINER Jessica Frazelle <jess@docker.com>
+
+MAINTAINER Thiago Rider Augusto <thiago.rider@gmail.com>
 
 ADD https://dl.google.com/linux/direct/google-talkplugin_current_amd64.deb /src/google-talkplugin_current_amd64.deb
 
 ADD https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb /src/google-chrome-stable_current_amd64.deb
 
-# Install Chrome
 RUN echo 'deb http://httpredir.debian.org/debian testing main' >> /etc/apt/sources.list && \
 	apt-get update && apt-get install -y \
 	ca-certificates \
@@ -61,8 +58,6 @@ RUN echo 'deb http://httpredir.debian.org/debian testing main' >> /etc/apt/sourc
 	&& rm -rf /var/lib/apt/lists/* \
 	&& rm -rf /src/*.deb
 
-# COPY local.conf /etc/fonts/local.conf
-
-# Autorun chrome
 ENTRYPOINT [ "google-chrome" ]
+
 CMD [ "--user-data-dir=/data" ]
