@@ -39,7 +39,6 @@ VOLUME /var/spool/postfix
 COPY ./docker-entrypoint.sh /
 
 ENTRYPOINT ["docker-entrypoint.sh"]
-CMD ["/bin/bash"]
 
 # REFERENCES
 # www.krizna.com/ubuntu/setup-mail-server-ubuntu-14-04
