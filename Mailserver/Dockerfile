@@ -31,6 +31,9 @@ RUN apt-get update && apt-get install -y \
 	dovecot-pop3d \
  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
+
+
+
 EXPOSE 25/tcp 110/tcp 143/tcp 587/tcp 993/tcp 995/tcp
 
 VOLUME /var/log/postfix
