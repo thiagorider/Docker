@@ -64,22 +64,32 @@ export POSTFIX_PROTOS=${POSTFIX_PROTOS:-"0"} # Set both protocols as default
 
 
 
+echo "postfix postfix/mailbox_limit                       string              $POSTFIX_MAILBOXLIMIT" | debconf-set-selections
+echo "postfix postfix/mailname                            string              $POSTFIX_DOMAIN" | debconf-set-selections
+echo "postfix postfix/procmail                            boolean             false" | debconf-set-selections
+echo "postfix postfix/compat_conversion_warning           boolean             true" | debconf-set-selections
+echo "postfix postfix/sqlite_warning                      boolean" | debconf-set-selections
+echo "postfix postfix/bad_recipient_delimiter             error" | debconf-set-selections
+echo "postfix postfix/relay_restrictions_warning          boolean" | debconf-set-selections
+echo "postfix postfix/retry_upgrade_warning               boolean" | debconf-set-selections
+echo "postfix postfix/dynamicmaps_conversion_warning      boolean" | debconf-set-selections
+echo "postfix postfix/rfc1035_violation                   boolean             false" | debconf-set-selections
+echo "postfix postfix/main_mailer_type                    select              Internet Site" | debconf-set-selections
+echo "postfix postfix/not_configured                      error" | debconf-set-selections
+echo "postfix postfix/mydomain_warning                    boolean" | debconf-set-selections
+echo "postfix postfix/destinations                        string              $POSTFIX_DOMAIN, localhost.localdomain, localhost" | debconf-set-selections
+echo "postfix postfix/relayhost                           string" | debconf-set-selections
+echo "postfix postfix/mynetworks                          string              127.0.0.0/8 [::ffff:127.0.0.0]/104 [::1]/128 $MYNETADDR/$MYCIDR" | debconf-set-selections
+echo "postfix postfix/main_cf_conversion_warning          boolean             true" | debconf-set-selections
+echo "postfix postfix/protocols                           select              all" | debconf-set-selections
+echo "postfix postfix/root_address                        string              thiago.augusto" | debconf-set-selections
+echo "postfix postfix/recipient_delim                     string              $POSTFIX_LOCALEXTCHAR" | debconf-set-selections
+echo "postfix postfix/chattr                              boolean             false" | debconf-set-selections
+echo "postfix postfix/tlsmgr_upgrade_warning              boolean" | debconf-set-selections
+echo "postfix postfix/kernel_version_warning              boolean" | debconf-set-selections
 
-if []; then
 
-fi
 
-if []; then
-	if []; then
-
-	fi
-
-	exec gosu postfix "$@"
-
-	echo
-	echo 'Postfix init process complete; ready for start up.'
-	echo
-
-fi
-
-exec "$@"
+echo
+echo 'Postfix reconfiguration process complete; ready for start up.'
+echo
