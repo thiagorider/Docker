@@ -29,6 +29,9 @@ RUN apt-get update && apt-get install -y \
 	postfix \
 	dovecot-imapd \
 	dovecot-pop3d \
+	debconf-utils \
+	net-tools \
+	rsyslog \
  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 
@@ -39,9 +42,11 @@ EXPOSE 25/tcp 110/tcp 143/tcp 587/tcp 993/tcp 995/tcp
 VOLUME /var/log/postfix
 VOLUME /var/spool/postfix
 
-COPY ./docker-entrypoint.sh /
+COPY docker-entrypoint.sh /docker-entrypoint.sh
 
-ENTRYPOINT ["docker-entrypoint.sh"]
+RUN chmod +x /docker-entrypoint.sh
+
+ENTRYPOINT ["/docker-entrypoint.sh"]
 
 # REFERENCES
 # www.krizna.com/ubuntu/setup-mail-server-ubuntu-14-04

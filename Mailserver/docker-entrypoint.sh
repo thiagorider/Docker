@@ -1,6 +1,5 @@
 #!/bin/bash
 set -e
-
 # Initial Setup
 export DEBIAN_FRONTEND=noninteractive
 
@@ -88,11 +87,8 @@ echo "postfix postfix/chattr                              boolean             fa
 echo "postfix postfix/tlsmgr_upgrade_warning              boolean" | debconf-set-selections
 echo "postfix postfix/kernel_version_warning              boolean" | debconf-set-selections
 
-dpkg-reconfigure postfix
-
-echo
-echo 'Postfix reconfiguration process complete; ready for start up.'
-echo
-
-service postfix restart
-
+dpkg-reconfigure postfix && \
+echo 'Postfix reconfiguration process complete; ready for start up.' && \
+service rsyslog start && \
+service postfix start && \
+tail -f /var/log/mail.log
