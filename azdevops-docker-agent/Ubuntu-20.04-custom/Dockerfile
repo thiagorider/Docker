@@ -4,7 +4,6 @@ ENV LANG=C.UTF-8
 
 # Install basic distro dependencies
 RUN DEBIAN_FRONTEND=noninteractive apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y -qq --no-install-recommends \
-    netcat \
     apt-transport-https \
     apt-utils \
     ca-certificates \
@@ -17,6 +16,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && DEBIAN_FRONTEND=noninteract
     iproute2 \
     iputils-ping \
     locales \
+    netcat \
     make \
     ssh \
     jq \
